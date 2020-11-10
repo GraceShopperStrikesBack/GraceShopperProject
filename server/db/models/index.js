@@ -21,14 +21,14 @@ const Order = require('./order')
 // Cart.belongsTo(User)
 // User.hasOne(Cart)
 
-//No need for cart - User Inventory magic method will create Cart and we can pull 
+//No need for cart - User Inventory magic method will create Cart and we can pull
 //individual user's cart by using userId which is unique.
 
 // Inventory.belongsToMany(Cart, { through: 'Cart_Inventory' })
 // Cart.belongsToMany(Inventory, {through: 'Cart_Inventory'})
 
-User.hasmany(Order)
-Inventory.belongsToMany(Order)
+User.hasMany(Order)
+Inventory.belongsToMany(Order, {through: 'Cart'})
 Order.belongsTo(User)
 Order.hasMany(Inventory)
 
