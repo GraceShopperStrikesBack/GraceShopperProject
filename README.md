@@ -1,3 +1,5 @@
+SJK
+
 # Boilermaker
 
 _Good things come in pairs_
@@ -53,8 +55,11 @@ export MY_APP_NAME=boilermaker
 createdb $MY_APP_NAME
 createdb $MY_APP_NAME-test
 ```
+sj-readme-test
 
+jayme-readme-test
 - By default, running `npm test` will use `boilermaker-test`, while
+
   regular development uses `boilermaker`
 - Create a file called `secrets.js` in the project root
   - This file is listed in `.gitignore`, and will _only_ be required
