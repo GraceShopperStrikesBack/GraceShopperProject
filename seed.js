@@ -20,6 +20,8 @@ function userMaker() {
 
 const users = userMaker()
 
+console.log(users)
+
 function productMaker() {
   let productArray = []
   let categoryArray = [clubs, balls]
@@ -28,7 +30,8 @@ function productMaker() {
       name: faker.commerce.productName(),
       imageUrl: faker.image.technics(),
       description: faker.commerce.productDescription(),
-      price: faker.commerce.price()
+      price: faker.commerce.price(),
+      category: categoryArray[Math.ceil(Math.random() * 2)]
     })
   }
   return productArray
