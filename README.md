@@ -4,6 +4,8 @@ SJK
 
 _Good things come in pairs_
 
+Hey its Jayme !!!
+
 Looking to mix up a backend with `express`/`sequelize` and a frontend with
 `react`/`redux`? That's `boilermaker`!
 
@@ -55,8 +57,8 @@ createdb $MY_APP_NAME-test
 ```
 sj-readme-test
 
-Daniel Lee TestingDaniel Lee TestingDaniel Lee Testing
-* By default, running `npm test` will use `boilermaker-test`, while
+jayme-readme-test
+- By default, running `npm test` will use `boilermaker-test`, while
 
   regular development uses `boilermaker`
 - Create a file called `secrets.js` in the project root
