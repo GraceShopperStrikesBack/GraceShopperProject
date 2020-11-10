@@ -16,7 +16,8 @@ describe('User model', () => {
       beforeEach(async () => {
         cody = await User.create({
           email: 'cody@puppybook.com',
-          password: 'bones'
+          password: 'bones',
+          address: 'New York and Chicago'
         })
       })
 
@@ -29,4 +30,27 @@ describe('User model', () => {
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
+
+  describe('User Model Sequelize part', () => {
+    describe('properties', () => {
+      let cody
+
+      beforeEach(async () => {
+        cody = await User.create({
+          email: 'cody@puppybook.com',
+          password: 'bones',
+          address: 'New York and Chicago'
+        })
+      })
+
+      it('returns the correct instance', () => {
+        expect(cody.email).to.be.equal('cody@puppybook.com')
+        expect(cody.address).to.be.equal('New York and Chicago')
+        expect(cody.imageUrl).to.be.equal(
+          'https://www.learning.uclg.org/sites/default/files/styles/featured_home_left/public/no-user-image-square.jpg?itok=PANMBJF-'
+        )
+        expect(cody.isAdmin).to.be.equal(false)
+      })
+    })
+  })
 }) // end describe('User model')
