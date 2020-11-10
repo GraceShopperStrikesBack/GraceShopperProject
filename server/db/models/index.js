@@ -1,5 +1,5 @@
 const User = require('./user')
-const Cart = require('./cart')
+// const Cart = require('./cart')
 const Inventory = require('./inventory')
 const Review = require('./review')
 const Order = require('./order')
@@ -18,21 +18,26 @@ const Order = require('./order')
  * instead of: const User = require('../db/models/user')
  */
 
-Cart.belongsTo(User)
-User.hasOne(Cart)
+// Cart.belongsTo(User)
+// User.hasOne(Cart)
 
-Inventory.belongsToMany(Cart, { through: 'Cart_Inventory' })
-//  Cart.belongsToMany(Inventory, {through: 'Cart_Inventory'})
+//No need for cart - User Inventory magic method will create Cart and we can pull 
+//individual user's cart by using userId which is unique.
+
+// Inventory.belongsToMany(Cart, { through: 'Cart_Inventory' })
+// Cart.belongsToMany(Inventory, {through: 'Cart_Inventory'})
+
+User.hasmany(Order)
+Inventory.belongsToMany(Order)
+Order.belongsTo(User)
+Order.hasMany(Inventory)
 
 Review.belongsTo(Inventory)
 Inventory.hasMany(Review)
 
-Order.belongsTo(User)
-
-
 module.exports = {
   User,
-  Cart,
+  // Cart,
   Inventory,
   Review,
   Order
