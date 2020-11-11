@@ -15,12 +15,9 @@ const Inventory = db.define('inventory', {
         defaultValue: "No description available."
     },
     price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
-    category: {
-        type: Sequelize.STRING,
-    }
 })
 
 module.exports = Inventory;

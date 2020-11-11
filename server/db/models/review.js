@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Review = db.define('review', {
     rating: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 3
     },
