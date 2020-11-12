@@ -11,10 +11,9 @@ class AllInventory extends React.Component {
 
   render() {
     const inventory = this.props.inventory
-    console.log(this.props)
-    // if (!inventory) {
-    //   return <div>This Page Is Loading...</div>
-    // }
+    if (!inventory) {
+      return <div>This Page Is Loading...</div>
+    }
     return (
       <div>
         <div>
