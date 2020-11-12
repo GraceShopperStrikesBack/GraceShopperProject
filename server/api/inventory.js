@@ -13,5 +13,3 @@ router.get('/:inventoryId', async (req, res, next) => {
     next(error)
   }
 })
-
-//require api route to inventory on index.js
