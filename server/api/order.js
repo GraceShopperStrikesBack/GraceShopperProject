@@ -9,6 +9,7 @@ const OrderInventory = require('../db/models/order_inventory')
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log('in router post >>>>>>>>>>>>>>>>>>>>>>>>>')
     let userOrder = await Order.findOrCreate({
       where: {
         userId: req.body.userId,
@@ -24,23 +25,25 @@ router.post('/', async (req, res, next) => {
     })
 
     if (orderInventory) {
-      orderInventory.quantity += 1
+      console.log('in if statement and just adding quantity')
+      orderInventory.quantity = orderInventory.quantity + 1
+      res.status(200).json(orderInventory)
     } else {
-      // let inventoryPrice = await Inventory.findOne({
-      //     where: {
-      //         id: req.body.inventoryId
-      //     }
-      // })
-      // console.log('INVENTORY PRICE >>>>>>>>>>>>>>>>>>>>>', inventoryPrice.price)
+      let inventoryPrice = await Inventory.findOne({
+        where: {
+          id: req.body.inventoryId
+        }
+      })
 
-      await OrderInventory.create({
+      let createdOI = await OrderInventory.create({
         inventoryId: req.body.inventoryId,
         orderId: userOrder[0].dataValues.id,
-        quantity: 1
-        // price: inventoryPrice[0].dataValues.price
+        quantity: 1,
+        price: inventoryPrice.price
       })
+      console.log('in end of else statement')
+      res.status(200).json(createdOI)
     }
-    res.status(200)
   } catch (error) {
     next(error)
   }
