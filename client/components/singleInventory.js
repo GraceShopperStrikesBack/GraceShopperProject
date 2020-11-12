@@ -13,15 +13,14 @@ export class SingleInventory extends React.Component {
   }
 
   render() {
-    let inventory = this.props.inventory
-
+    let inventory = this.props.singleInventory
     return (
       <div>
         {inventory.id ? (
           <div>
             <img src={inventory.imageUrl} />
             <h2>{inventory.name}</h2>
-            <h3>{inventory.price}</h3>
+            <h3>$ {inventory.price}</h3>
             <p>{inventory.description}</p>
           </div>
         ) : (
@@ -34,7 +33,7 @@ export class SingleInventory extends React.Component {
 
 const mapState = state => {
   return {
-    inventory: state.inventory
+    singleInventory: state.singleInventory
   }
 }
 
