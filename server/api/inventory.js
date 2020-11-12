@@ -1,14 +1,14 @@
 const router = require('express').Router()
-const {Inventory} = require('../db/models/inventory')
+const Inventory = require('../db/models/inventory')
 
-router.get('/', async (req,res,next) => {
-    try {
-        const allInventory = await Inventory.findAll()
-        res.status(200).json(allInventory)
-    } catch (err) {
-        next(err)
-    }
-});
+router.get('/', async (req, res, next) => {
+  try {
+    const allInventory = await Inventory.findAll()
+    res.status(200).json(allInventory)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.get('/:inventoryId', async (req, res, next) => {
   try {
@@ -23,4 +23,4 @@ router.get('/:inventoryId', async (req, res, next) => {
   }
 })
 
-module.exports = router;
+module.exports = router
