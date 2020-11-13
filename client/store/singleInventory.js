@@ -27,7 +27,7 @@ export const addSingleInventory = (name, imageUrl, description, price) => {
       name: name,
       imageUrl: imageUrl,
       description: description,
-      price: price
+      price: Number(price)
     })
     const allInventory = await axios.get('/api/inventory')
     dispatch(getAllInventory(allInventory.data))
@@ -54,7 +54,7 @@ export const updateSingleInventory = (
       name: name,
       imageUrl: imageUrl,
       description: description,
-      price: price
+      price: Number(price)
     })
     dispatch(setSingleInventory(item.data))
   }

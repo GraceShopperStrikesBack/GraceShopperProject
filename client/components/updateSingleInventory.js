@@ -12,7 +12,7 @@ class UpdateSingleInventory extends React.Component {
       name: '',
       imageUrl: '',
       description: '',
-      price: null
+      price: ''
     }
     this.handleDelete = this.handleDelete.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
@@ -34,9 +34,10 @@ class UpdateSingleInventory extends React.Component {
     )
     //this.props.inventoryRefresh() <<<<<<<<< what are we doing here?  used in JPFP for instant visibility on update
     this.setState({
-      firstName: '',
-      lastName: '',
-      email: ''
+      name: '',
+      imageUrl: '',
+      description: '',
+      price: ''
     })
   }
 

@@ -9,7 +9,7 @@ class CreateNewInventory extends React.Component {
       name: '',
       imageUrl: '',
       description: '',
-      price: null
+      price: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -34,7 +34,7 @@ class CreateNewInventory extends React.Component {
         description: 'This field is required.'
       })
     }
-    if (this.state.price === '' || typeof this.state.price !== Number) {
+    if (this.state.price === '') {
       event.preventDefault()
       this.setState({
         price: 'This field is required.'
@@ -51,7 +51,7 @@ class CreateNewInventory extends React.Component {
         name: '',
         imageUrl: '',
         description: '',
-        price: null
+        price: ''
       })
     }
   }
@@ -67,7 +67,7 @@ class CreateNewInventory extends React.Component {
       <div>
         <div>
           <div>
-            <h2>Add New Student</h2>
+            <h2>Add New Products</h2>
           </div>
           <form onSubmit={this.handleSubmit}>
             <div>
