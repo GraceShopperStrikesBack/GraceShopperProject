@@ -24,23 +24,24 @@ router.post('/', async (req, res, next) => {
     })
 
     if (orderInventory) {
-      orderInventory.quantity += 1
+      orderInventory.quantity = orderInventory.quantity + 1
+      await orderInventory.save()
+      res.status(200).json(orderInventory)
     } else {
-      // let inventoryPrice = await Inventory.findOne({
-      //     where: {
-      //         id: req.body.inventoryId
-      //     }
-      // })
-      // console.log('INVENTORY PRICE >>>>>>>>>>>>>>>>>>>>>', inventoryPrice.price)
+      let inventoryPrice = await Inventory.findOne({
+        where: {
+          id: req.body.inventoryId
+        }
+      })
 
-      await OrderInventory.create({
+      let createdOI = await OrderInventory.create({
         inventoryId: req.body.inventoryId,
         orderId: userOrder[0].dataValues.id,
-        quantity: 1
-        // price: inventoryPrice[0].dataValues.price
+        quantity: 1,
+        price: inventoryPrice.price
       })
+      res.status(200).json(createdOI)
     }
-    res.status(200)
   } catch (error) {
     next(error)
   }
