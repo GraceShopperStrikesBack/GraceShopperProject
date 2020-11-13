@@ -9,7 +9,6 @@ const OrderInventory = require('../db/models/order_inventory')
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('in router post >>>>>>>>>>>>>>>>>>>>>>>>>')
     let userOrder = await Order.findOrCreate({
       where: {
         userId: req.body.userId,
