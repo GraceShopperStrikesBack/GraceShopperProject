@@ -1,6 +1,7 @@
 import React from 'react'
 import {fetchSingleInventory} from '../store/singleInventory'
 import {connect} from 'react-redux'
+import UpdateSingleInventory from './updateSingleInventory'
 
 export class SingleInventory extends React.Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ export class SingleInventory extends React.Component {
         ) : (
           <h1>Page Loading</h1>
         )}
+        <UpdateSingleInventory inventory={inventory} />
       </div>
     )
   }
