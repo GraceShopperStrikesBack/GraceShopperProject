@@ -27,6 +27,7 @@ router.post('/', async (req, res, next) => {
     if (orderInventory) {
       console.log('in if statement and just adding quantity')
       orderInventory.quantity = orderInventory.quantity + 1
+      await orderInventory.save()
       res.status(200).json(orderInventory)
     } else {
       let inventoryPrice = await Inventory.findOne({
