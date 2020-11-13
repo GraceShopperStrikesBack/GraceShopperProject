@@ -47,6 +47,18 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:orderId', async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId
+    const updateOrder = await OrderInventory.update(req.body, {
+      where: {orderId: orderId, inventoryId: req.body.inventoryId}
+    })
+    res.send(updateOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
 
 //Comes in
