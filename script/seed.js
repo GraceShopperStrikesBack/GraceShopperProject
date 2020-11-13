@@ -12,7 +12,8 @@ async function seed() {
     User.create({
       email: 'cody@email.com',
       password: '123',
-      address: '5 Hanover Square 11th Fl, New York, NY 10004'
+      address: '5 Hanover Square 11th Fl, New York, NY 10004',
+      isAdmin: true
     }),
     User.create({
       email: 'murphy@email.com',

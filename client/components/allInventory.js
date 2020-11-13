@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getInventoryThunk} from '../store/allInventory'
+import {getAllInventory} from '../store/allInventory'
 
 //Need to import single page from SJ and Dan//
 
@@ -39,7 +39,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getInventory: () => dispatch(getInventoryThunk())
+    getInventory: () => dispatch(getAllInventory())
   }
 }
 

@@ -16,7 +16,7 @@ const setInventory = inventory => {
 
 //Thunks//
 
-export const getInventoryThunk = () => {
+export const getAllInventory = () => {
   return async dispatch => {
     try {
       const {data: fetchedInventory} = await axios.get('/api/inventory')

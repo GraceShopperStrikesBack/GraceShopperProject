@@ -1,6 +1,8 @@
 import React from 'react'
 import {fetchSingleInventory} from '../store/singleInventory'
 import {connect} from 'react-redux'
+import UpdateSingleInventory from './updateSingleInventory'
+import user from '../store/user'
 
 export class SingleInventory extends React.Component {
   componentDidMount() {
@@ -26,6 +28,13 @@ export class SingleInventory extends React.Component {
         ) : (
           <h1>Page Loading</h1>
         )}
+        {this.props.user.isAdmin === true ? (
+          <div>
+            <UpdateSingleInventory inventory={inventory} />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     )
   }
@@ -33,7 +42,8 @@ export class SingleInventory extends React.Component {
 
 const mapState = state => {
   return {
-    singleInventory: state.singleInventory
+    singleInventory: state.singleInventory,
+    user: state.user
   }
 }
 
