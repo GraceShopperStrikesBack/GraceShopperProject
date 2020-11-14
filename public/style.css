@@ -48,3 +48,9 @@ form div {
   display: flex-column;
   justify-content: center;
 }
+
+.inventoryBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
