@@ -9,8 +9,8 @@ export class Order extends React.Component {
   }
 
   render() {
-    let order = this.props.order
-    console.log(order)
+    let order = this.props
+    console.log('is this printing in render?', order)
     return (
       <div>
         <div>
