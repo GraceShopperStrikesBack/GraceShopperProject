@@ -19,6 +19,7 @@ export const UserHome = props => {
       ) : (
         <div>You do not have permission to edit products.</div>
       )}
+      <footer>Grace Pro Shopper © 2020</footer>
     </div>
   )
 }

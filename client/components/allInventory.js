@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {getAllInventory} from '../store/allInventory'
 
 //Need to import single page from SJ and Dan//
-
 class AllInventory extends React.Component {
   componentDidMount() {
     this.props.getInventory()
@@ -11,21 +10,27 @@ class AllInventory extends React.Component {
 
   render() {
     const inventory = this.props.inventory
+
     if (!inventory) {
       return <div>This Page Is Loading...</div>
     }
     return (
-      <div>
-        <div>
+      <div id="allInventory" className="backgroundImage">
+        <header>
+          <h1>Products</h1>
+          <div className="line" />
+        </header>
+        <div className="inventoryBox">
           {inventory.map(currentItem => {
             return (
-              <div key={currentItem.id}>
-                <div>{currentItem.name}</div>
+              <div key={currentItem.id} className="singleInventoryBox">
                 <img src={currentItem.imageUrl} />
+                <div className="title">{currentItem.name}</div>
               </div>
             )
           })}
         </div>
+        <footer>Grace Pro Shopper © 2020</footer>
       </div>
     )
   }

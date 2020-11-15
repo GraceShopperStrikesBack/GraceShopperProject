@@ -19,11 +19,17 @@ export class SingleInventory extends React.Component {
     return (
       <div>
         {inventory.id ? (
-          <div>
-            <img src={inventory.imageUrl} />
-            <h2>{inventory.name}</h2>
-            <h3>$ {inventory.price}</h3>
-            <p>{inventory.description}</p>
+          <div className="inventoryBox">
+            <h1>{inventory.name}</h1>
+            <div className="singlePageItem">
+              <img src={inventory.imageUrl} />
+            </div>
+            <div className="singlePageItem">
+              <h3>About:</h3>
+              <p>{inventory.description}</p>
+              <h4>Price: $ {inventory.price}</h4>
+              <button type="submit">Add To Cart</button>
+            </div>
           </div>
         ) : (
           <h1>Page Loading</h1>
@@ -35,6 +41,7 @@ export class SingleInventory extends React.Component {
         ) : (
           <div />
         )}
+        <footer>Grace Pro Shopper © 2020</footer>
       </div>
     )
   }
