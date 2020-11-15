@@ -13,7 +13,7 @@ export const fetchSingleOrder = orderId => {
   return async dispatch => {
     try {
       const {data: order} = await axios.get(`/api/order/${orderId}`)
-      dispatch(setSingleInventory(order))
+      dispatch(setSingleOrder(order))
     } catch (error) {
       console.error('fetching single order error', error)
     }

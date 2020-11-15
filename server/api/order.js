@@ -3,9 +3,18 @@ const Inventory = require('../db/models/inventory')
 const Order = require('../db/models/order')
 const OrderInventory = require('../db/models/order_inventory')
 
-// router.get('/', async (req, res, next) => {
-//is this the order or cart
-// })
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    let order = await Order.findByPk(req.body.orderId)
+    console.log(order)
+    // let orderInventory = await OrderInventory.findAll({ where: { orderId: req.body.orderId }})
+    // order.orderInventory = orderInventory;
+    console.log('>>>>>>>>>THIS IS LINE 12!!!!!!!>>>>>>>', order)
+    res.status(200).json(order)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.post('/', async (req, res, next) => {
   try {
