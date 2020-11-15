@@ -3,6 +3,7 @@
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Inventory} = require('../server/db/models')
+const {Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -19,8 +20,15 @@ async function seed() {
       email: 'murphy@email.com',
       password: '123',
       address: '405 W Superior St, Chicago, IL 60654'
+    }),
+    User.create({
+      email: 'slipperysam@email.com',
+      password: '123',
+      address: '405 W Superior St, Chicago, IL 60654'
     })
   ])
+
+  const orders = await Promise.all([Order.create({})])
 
   const inventories = await Promise.all([
     Inventory.create({
