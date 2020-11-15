@@ -19,14 +19,8 @@ const Categories = require('./categories')
  * instead of: const User = require('../db/models/user')
  */
 
-// Cart.belongsTo(User)
-// User.hasOne(Cart)
-
 //No need for cart - User Inventory magic method will create Cart and we can pull
 //individual user's cart by using userId which is unique.
-
-// Inventory.belongsToMany(Cart, { through: 'Cart_Inventory' })
-// Cart.belongsToMany(Inventory, {through: 'Cart_Inventory'})
 
 User.hasMany(Order)
 Order.belongsTo(User)

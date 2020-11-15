@@ -9,27 +9,32 @@ export class Order extends React.Component {
   }
 
   render() {
-    let order = this.props
-    console.log('is this printing in render?', order)
+    let order = this.props.order
     return (
       <div>
-        <div>
-          <div>{order.isFulfilled ? <h1>Order</h1> : <h1>Your Cart</h1>}</div>
+        {order.id ? (
           <div>
-            {order.orderInventory.map(currentInventory => {
-              return (
-                <div key={currentInventory.id}>
-                  <div>
-                    <img src={currentInventory.imageUrl} />
-                    <h2>{currentInventory.name}</h2>
-                    <h3>$ {currentInventory.price}</h3>
-                    <p>Quantity:{currentInventory.quantity}</p>
+            <div>{order.isFulfilled ? <h1>Order</h1> : <h1>Your Cart</h1>}</div>
+            <div>
+              {order.inventories.map(currentInventory => {
+                return (
+                  <div key={currentInventory.id}>
+                    <div>
+                      <img src={currentInventory.imageUrl} />
+                      <h2>{currentInventory.name}</h2>
+                      <h3>$ {currentInventory.order_inventory.price}</h3>
+                      <p>
+                        Quantity:{currentInventory.order_inventory.quantity}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div>Loading</div>
+        )}
       </div>
     )
   }

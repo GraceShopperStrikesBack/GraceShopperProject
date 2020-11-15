@@ -5,15 +5,9 @@ const OrderInventory = require('../db/models/order_inventory')
 
 router.get('/:orderId', async (req, res, next) => {
   try {
-    // console.log('in here, and req.params.orderID is', req.params.orderId)
-    let order = await Order.findByPk(req.params.orderId)
-    let orderInventory = await OrderInventory.findAll({
-      where: {orderId: req.params.orderId}
+    let order = await Order.findByPk(req.params.orderId, {
+      include: {model: Inventory}
     })
-    // console.log('got orderInventory which si this', orderInventory)
-    order.orderInventory = orderInventory
-    // console.log('>>>>>>>>>THIS IS LINE 12!!!!!!!>>>>>>>', order)
-    console.log('order.orderInventory is: ', order.orderInventory[0].dataValues)
     res.status(200).json(order)
   } catch (error) {
     next(error)
