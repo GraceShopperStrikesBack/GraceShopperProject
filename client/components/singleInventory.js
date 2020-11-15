@@ -25,10 +25,10 @@ export class SingleInventory extends React.Component {
               <img src={inventory.imageUrl} />
             </div>
             <div className="singlePageItem">
-              <h3>Description:</h3>
+              <h3>About:</h3>
               <p>{inventory.description}</p>
               <h4>Price: $ {inventory.price}</h4>
-              <button>Add To Cart</button>
+              <button type="submit">Add To Cart</button>
             </div>
           </div>
         ) : (
