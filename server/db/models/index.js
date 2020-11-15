@@ -2,7 +2,7 @@ const User = require('./user')
 const Inventory = require('./inventory')
 const Review = require('./review')
 const Order = require('./order')
-const Order_inventory = require('./order_inventory')
+const OrderInventory = require('./order_inventory')
 const Categories = require('./categories')
 
 /**
@@ -31,8 +31,8 @@ const Categories = require('./categories')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Inventory.belongsToMany(Order, {through: Order_inventory})
-Order.belongsToMany(Inventory, {through: Order_inventory})
+Inventory.belongsToMany(Order, {through: OrderInventory})
+Order.belongsToMany(Inventory, {through: OrderInventory})
 
 Inventory.belongsToMany(Categories, {through: 'Inventory_categories'})
 Categories.belongsToMany(Inventory, {through: 'Inventory_categories'})
@@ -48,5 +48,5 @@ module.exports = {
   Review,
   Order,
   Categories,
-  Order_inventory
+  OrderInventory
 }
