@@ -3,9 +3,16 @@ const Inventory = require('../db/models/inventory')
 const Order = require('../db/models/order')
 const OrderInventory = require('../db/models/order_inventory')
 
-// router.get('/', async (req, res, next) => {
-//is this the order or cart
-// })
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    let order = await Order.findByPk(req.params.orderId, {
+      include: {model: Inventory}
+    })
+    res.status(200).json(order)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.post('/', async (req, res, next) => {
   try {

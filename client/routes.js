@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import allInventory from './components/allInventory'
 import singleInventory from './components/singleInventory'
+import Order from './components/order'
 
 /**
  * COMPONENT
@@ -23,6 +24,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/order/:orderId" component={Order} />
         <Route exact path="/inventory" component={allInventory} />
         <Route path="/inventory/:inventoryId" component={singleInventory} />
         {isLoggedIn && (

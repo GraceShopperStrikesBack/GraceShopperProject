@@ -3,6 +3,8 @@
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Inventory} = require('../server/db/models')
+const {Order} = require('../server/db/models')
+const {OrderInventory} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -17,6 +19,11 @@ async function seed() {
     }),
     User.create({
       email: 'murphy@email.com',
+      password: '123',
+      address: '405 W Superior St, Chicago, IL 60654'
+    }),
+    User.create({
+      email: 'slipperysam@email.com',
       password: '123',
       address: '405 W Superior St, Chicago, IL 60654'
     })
@@ -248,6 +255,12 @@ async function seed() {
       price: 250,
       category: 'Blade Putters'
     })
+  ])
+
+  const orders = await Promise.all([Order.create({})])
+
+  const orderInventory = await Promise.all([
+    OrderInventory.create({inventoryId: 1, orderId: 1, price: 200, quantity: 2})
   ])
 
   console.log(`seeded ${users.length} users`)
