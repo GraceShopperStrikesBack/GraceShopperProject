@@ -23,6 +23,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      <img src="./images/CartLogo.png" alt="cart" className="cart" />
     </nav>
     <hr />
   </div>

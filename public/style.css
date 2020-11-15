@@ -1,3 +1,10 @@
+html {
+  background-image: url('./images/pebbleBeach.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -10,7 +17,10 @@ label {
   display: block;
 }
 
+/*NAV BAR STYLE */
+
 nav {
+  display: inline-block;
   align-items: center;
   background-color: #005f40;
   color: #c0c0c0;
@@ -37,11 +47,57 @@ nav a:hover {
 }
 
 nav img {
-  display: inline-block;
-  position: relative;
+  display: flex;
   width: auto;
   max-height: 90px;
+  margin: 0px 5px;
 }
+nav .cart {
+  position: right;
+  border: 2px solid #005f40;
+  border-radius: 15%;
+}
+
+nav .cart:hover {
+  border: 2px solid #fff;
+}
+
+/* FOOTER */
+
+footer {
+  width: 100%;
+  background-color: black;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  margin-top: 2em;
+  color: white;
+  text-align: center;
+  font-size: 1em;
+}
+
+.formBox footer {
+  position: absolute;
+  bottom: 0;
+}
+
+/*HEADING STYLE */
+
+h1 {
+  display: table;
+  margin: auto;
+  padding: 0.5em 1em;
+  font-size: 4em;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 2px solid white;
+}
+
+/*FORM STYLE */
 
 form div {
   margin: 1em;
@@ -49,8 +105,87 @@ form div {
   justify-content: center;
 }
 
+.formBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 3px solid black;
+  background-color: white;
+}
+
+.formBox button {
+  height: 1.5em;
+  font-size: 1.3em;
+  color: #fff;
+  background-color: #005f40;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/*ALL INVENTORY VIEW STYLE */
 .inventoryBox {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 3em;
+}
+
+.inventoryBox .singleInventoryBox {
+  position: relative;
+  min-height: 1px;
+  margin: 4px;
+  border-radius: 15%;
+  border: 2px solid #fff;
+}
+
+.inventoryBox .singleInventoryBox:hover {
+  border: 2px solid #005f40;
+  background-color: black;
+  z-index: 2;
+}
+
+.singleInventoryBox img {
+  border-radius: 25%;
+  margin: 2em;
+  z-index: 3;
+}
+
+.singleInventoryBox .title {
+  display: flex;
+  justify-content: center;
+  height: 1.5em;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #005f40;
+  box-shadow: #d3d3d3;
+  border-radius: 5px;
+  margin: 0 1em 2em 2em;
+  border: 1px solid #fff;
+}
+
+.singleInventoryBox .title:hover {
+  color: #005f40;
+  background-color: #fff;
+  border: 1px solid #005f40;
+}
+
+/* SINGLE PAGE STYLE */
+.inventoryBox .singlePageItem {
+  position: relative;
+  min-height: 1px;
+  margin: 4em;
+  padding: 2em;
+  border-radius: 15%;
+  border: 2px solid #fff;
+  color: white;
+  text-align: center;
+  max-width: 25%;
+}
+
+.singlePageItem img {
+  max-width: 90%;
+  max-height: auto;
+  border-radius: 25%;
+  margin: 2em;
+  z-index: 3;
 }
