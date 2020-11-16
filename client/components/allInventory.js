@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getAllInventory} from '../store/allInventory'
 
 //Need to import single page from SJ and Dan//
-class AllInventory extends React.Component {
+export class AllInventory extends React.Component {
   componentDidMount() {
     this.props.getInventory()
   }
