@@ -41,12 +41,12 @@ const mapState = state => {
   }
 }
 
-// const mapDispatch = dispatch => {
-//     return {
-//       fetchSingleOrder: orderId => {
-//         dispatch(fetchSingleOrder(orderId))
-//       }
-//     }
-// }
+const mapDispatch = dispatch => {
+  return {
+    fetchSingleOrder: orderId => {
+      dispatch(fetchSingleOrder(orderId))
+    }
+  }
+}
 
 export default connect(mapState, null)(CartQuantity)

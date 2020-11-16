@@ -3,19 +3,9 @@ const Inventory = require('../db/models/inventory')
 const Order = require('../db/models/order')
 const OrderInventory = require('../db/models/order_inventory')
 
-router.get('/:orderId', async (req, res, next) => {
-  try {
-    let order = await Order.findByPk(req.params.orderId, {
-      include: {model: Inventory}
-    })
-    res.status(200).json(order)
-  } catch (error) {
-    next(error)
-  }
-})
-
 router.get('/', async (req, res, next) => {
   try {
+    console.log('in router.get, and req.body is: >>>>>>>>', req.body)
     let order = await Order.findOne({
       where: {userId: req.body.userId, isFulfilled: false},
       include: {model: Inventory}
@@ -29,6 +19,17 @@ router.get('/', async (req, res, next) => {
     } else {
       res.status(200).json(order)
     }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    let order = await Order.findByPk(req.params.orderId, {
+      include: {model: Inventory}
+    })
+    res.status(200).json(order)
   } catch (error) {
     next(error)
   }

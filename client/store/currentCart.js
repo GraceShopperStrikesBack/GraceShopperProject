@@ -10,10 +10,15 @@ const setSingleCart = order => ({
 })
 
 export const fetchSingleCart = userId => {
+  console.log('userId passed into store is: >>>>>>>>>>', userId)
   return async dispatch => {
     try {
-      const {data: order} = await axios.get(`/api/order/`, {userId: userId})
-      dispatch(setSingleCart(order))
+      const {data} = await axios.get(`/api/users/${userId}`)
+      console.log('user data is ?????????????????', data)
+      //   console.log('in fetchSingleCart >>>>>>>>>>>>')
+      //   const { data: order } = await axios.get(`/api/order/`, { userId: userId })
+      //   console.log('order in fetchSingleCart is : >>>>>>>>>>>', order)
+      dispatch(setSingleCart(data))
     } catch (error) {
       console.error('fetching single cart error', error)
     }
