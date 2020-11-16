@@ -7,7 +7,7 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <nav>
-      <img alt="logo" src="./images/GPS_Logo.png" />
+      <img alt="logo" src="../../images/GPS_Logo.png" />
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -23,7 +23,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-      <img src="./images/CartLogo.png" alt="cart" className="cart" />
+      <img src="../../images/CartLogo.png" alt="cart" className="cart" />
     </nav>
     <hr />
   </div>
