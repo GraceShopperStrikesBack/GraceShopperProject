@@ -6,6 +6,7 @@ import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {AllInventory} from './allInventory'
 import sinon from 'sinon'
+import {SingleInventory} from './singleInventory'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
@@ -57,5 +58,51 @@ describe('AllInventory component', () => {
       'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2020/01/09/5e1742a74dc2c900088be73c_GD020120_HL_DR_F_CALLAWAY_MAVERIK_FACE_DRIVER_HL2020.jpg.rend.hgtvcom.406.406.suffix/1581448539480.jpeg',
       'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2020/01/09/5e1745daa9128e00073624a2_GD020120_HL_WEB_CLEVELAND_LAUNCHER%20HB%20TURBO%20DRAW_HERO_DRIVER_HL2020.jpg.rend.hgtvcom.406.406.suffix/1583334823331.jpeg'
     ])
+  })
+})
+
+describe('SingleInventory component', () => {
+  let singleInventory
+
+  const inventory = {
+    id: 1,
+    name: 'Callaway Mavrik/Sub Zero',
+    imageUrl:
+      'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2020/01/09/5e1742a74dc2c900088be73c_GD020120_HL_DR_F_CALLAWAY_MAVERIK_FACE_DRIVER_HL2020.jpg.rend.hgtvcom.406.406.suffix/1581448539480.jpeg',
+    description:
+      'Callaway’s new three-driver family builds on the artificial-intelligence platform of last year’s Epic Flash. Those previously unimaginable variable- thickness face contours have been improved to bolster distance for three head styles and player types. The standard Mavrik—Callaway’s most ambitious aerodynamic design—has a raised rear skirt to enhance swing speed, and the face and deep center of gravity work together to produce consistency in distance. The beefier, low-spin Sub Zero and the draw-biased Max come with two movable weights.',
+    price: 500,
+    category: 'Drivers'
+  }
+
+  const user = {isAdmin: false}
+
+  const match = {params: {inventoryId: 1}}
+
+  const getSingleInventorySpy = sinon.spy()
+
+  afterEach(() => {
+    getSingleInventorySpy.resetHistory()
+  })
+
+  beforeEach(() => {
+    singleInventory = shallow(
+      <SingleInventory
+        singleInventory={inventory}
+        getSingleInventory={getSingleInventorySpy}
+        user={user}
+        match={match}
+      />
+    )
+  })
+
+  it('renders the inventory passed in as props', () => {
+    expect(singleInventory.text()).to.include('Callaway Mavrik/Sub Zero')
+    console.log('what is this', singleInventory)
+    expect(singleInventory.find('img').prop('src')).to.be.equal(
+      'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2020/01/09/5e1742a74dc2c900088be73c_GD020120_HL_DR_F_CALLAWAY_MAVERIK_FACE_DRIVER_HL2020.jpg.rend.hgtvcom.406.406.suffix/1581448539480.jpeg'
+    )
+
+    expect(singleInventory.find('h4').text()).to.be.equal('Price: $ 500')
   })
 })
