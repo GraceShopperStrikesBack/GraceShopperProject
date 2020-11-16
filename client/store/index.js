@@ -7,7 +7,7 @@ import singleInventoryReducer from './singleInventory'
 import allInventoryReducer from './allInventory'
 import singleOrderReducer from './order'
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
   user,
   singleInventory: singleInventoryReducer,
   inventory: allInventoryReducer,

@@ -5,7 +5,7 @@ let initialState = {}
 
 const SET_SINGLE_INVENTORY = 'SET_SINGLE_INVENTORY'
 
-const setSingleInventory = inventory => ({
+export const setSingleInventory = inventory => ({
   type: SET_SINGLE_INVENTORY,
   inventory
 })
