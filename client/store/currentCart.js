@@ -10,10 +10,9 @@ const setSingleCart = order => ({
 })
 
 export const fetchSingleCart = userId => {
-  console.log('userId passed into store is: >>>>>>>>>>', userId)
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/users/${userId}`)
+      const {data} = await axios.get(`/api/users/${userId}/cart`)
       console.log('user data is ?????????????????', data)
       //   console.log('in fetchSingleCart >>>>>>>>>>>>')
       //   const { data: order } = await axios.get(`/api/order/`, { userId: userId })

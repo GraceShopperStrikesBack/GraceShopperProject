@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {User, Order, Inventory} = require('../db/models')
-module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
@@ -30,6 +29,20 @@ router.get('/:userId/cart', async (req, res, next) => {
   }
 })
 
+router.get('/:userId/order', async (req, res, next) => {
+  try {
+    const cart = await Order.findAll({
+      where: {userId: req.params.userId, isFulfilled: false},
+      include: {
+        model: Inventory
+      }
+    })
+    res.json(cart)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // router.get('/:userId', async (req, res, next) => {
 //   try {
 //     const users = await User.findByPk(req.params.userId, {
@@ -45,3 +58,4 @@ router.get('/:userId/cart', async (req, res, next) => {
 //     next(err)
 //   }
 // })
+module.exports = router
