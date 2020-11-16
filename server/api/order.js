@@ -21,11 +21,11 @@ router.get('/', async (req, res, next) => {
       include: {model: Inventory}
     })
     if (!order) {
-      order = await Order.create({
-        where: {userId: req.body.userId, isFulfilled: false},
-        include: {model: Inventory}
-      })
-      res.status(200).json(order)
+      // order = await Order.create({
+      //   where: {userId: req.body.userId, isFulfilled: false},
+      //   include: {model: Inventory}
+      // })
+      res.status(404)
     } else {
       res.status(200).json(order)
     }
