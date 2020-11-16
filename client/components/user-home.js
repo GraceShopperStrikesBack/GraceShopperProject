@@ -2,26 +2,36 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import CreateNewInventory from './createNewInventory'
+import {fetchSingleCart} from '../store/currentCart'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {user, email} = props
+export class UserHome extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      {user.isAdmin === true ? (
-        <div>
-          <CreateNewInventory />
-        </div>
-      ) : (
-        <div>You do not have permission to edit products.</div>
-      )}
-      <footer>Grace Pro Shopper © 2020</footer>
-    </div>
-  )
+  componentDidMount() {
+    this.props.fetchSingleCart(this.props.user.id)
+  }
+
+  // const {user, email} = props
+  render() {
+    return (
+      <div>
+        <h3>Welcome, {this.props.email}</h3>
+        {this.props.user.isAdmin === true ? (
+          <div>
+            <CreateNewInventory />
+          </div>
+        ) : (
+          <div>You do not have permission to edit products.</div>
+        )}
+        <footer>Grace Pro Shopper © 2020</footer>
+      </div>
+    )
+  }
 }
 
 /**
@@ -34,7 +44,15 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => {
+  return {
+    fetchSingleCart: userId => {
+      dispatch(fetchSingleCart(userId))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES

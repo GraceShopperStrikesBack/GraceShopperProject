@@ -23,10 +23,12 @@ class AllInventory extends React.Component {
         <div className="inventoryBox">
           {inventory.map(currentItem => {
             return (
-              <div key={currentItem.id} className="singleInventoryBox">
-                <img src={currentItem.imageUrl} />
-                <div className="title">{currentItem.name}</div>
-              </div>
+              <a href={`/inventory/${currentItem.id}`}>
+                <div key={currentItem.id} className="singleInventoryBox">
+                  <img src={currentItem.imageUrl} />
+                  <div className="title">{currentItem.name}</div>
+                </div>
+              </a>
             )
           })}
         </div>

@@ -20,6 +20,20 @@ export const fetchSingleOrder = orderId => {
   }
 }
 
+export const updateSingleOrder = (orderId, orderObject) => {
+  return async dispatch => {
+    try {
+      const {data: order} = await axios.put(
+        `/api/order/${orderId}`,
+        orderObject
+      )
+      dispatch(setSingleOrder(order))
+    } catch (error) {
+      console.error('updating single order error', error)
+    }
+  }
+}
+
 export default function singleOrderReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SINGLE_ORDER:

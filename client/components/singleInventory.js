@@ -1,10 +1,16 @@
 import React from 'react'
 import {fetchSingleInventory} from '../store/singleInventory'
 import {connect} from 'react-redux'
+import {updateSingleOrder} from '../store/order'
 import UpdateSingleInventory from './updateSingleInventory'
 import user from '../store/user'
 
 export class SingleInventory extends React.Component {
+  constructor() {
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
   componentDidMount() {
     try {
       const inventoryId = this.props.match.params.inventoryId
@@ -14,7 +20,12 @@ export class SingleInventory extends React.Component {
     }
   }
 
+  handleSubmit(orderId, orderObject) {
+    this.props.updateSingleOrder(orderId, orderObject)
+  }
+
   render() {
+    console.log(this.props.user)
     let inventory = this.props.singleInventory
     return (
       <div>
@@ -28,7 +39,14 @@ export class SingleInventory extends React.Component {
               <h3>About:</h3>
               <p>{inventory.description}</p>
               <h4>Price: $ {inventory.price}</h4>
-              <button type="submit">Add To Cart</button>
+              <button
+                type="submit"
+                onClick={() => {
+                  this.handleSubmit(inventory)
+                }}
+              >
+                Add To Cart
+              </button>
             </div>
           </div>
         ) : (
@@ -56,8 +74,12 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getSingleInventory: inventoryId =>
+    getSingleInventory: inventoryId => {
       dispatch(fetchSingleInventory(inventoryId))
+    },
+    updateSingleOrder: (orderId, orderObject) => {
+      dispatch(updateSingleOrder(orderId, orderObject))
+    }
   }
 }
 

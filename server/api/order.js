@@ -14,6 +14,26 @@ router.get('/:orderId', async (req, res, next) => {
   }
 })
 
+router.get('/', async (req, res, next) => {
+  try {
+    let order = await Order.findOne({
+      where: {userId: req.body.userId, isFulfilled: false},
+      include: {model: Inventory}
+    })
+    if (!order) {
+      order = await Order.create({
+        where: {userId: req.body.userId, isFulfilled: false},
+        include: {model: Inventory}
+      })
+      res.status(200).json(order)
+    } else {
+      res.status(200).json(order)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     let userOrder = await Order.findOrCreate({
