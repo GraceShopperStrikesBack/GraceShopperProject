@@ -1,22 +1,25 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleOrder} from '../store/order'
+import {fetchSingleCart} from '../store/currentCart'
+import Checkout from './Checkout'
+import {SingleInventory} from './SingleInventory'
+import {Link} from 'react-router-dom'
 
-export class Order extends React.Component {
+export class Cart extends React.Component {
   componentDidMount() {
-    const orderId = this.props.match.params.orderId
-    this.props.fetchSingleOrder(orderId)
+    const userId = this.props.match.params.userId
+    this.props.fetchSingleCart(userId)
   }
 
   render() {
-    let order = this.props.order
+    let currentCart = this.props.currentCart[0]
     return (
       <div>
-        {order.id ? (
+        {this.props.currentCart.length ? (
           <div>
-            <h1>Order</h1>
+            <h1>Your Cart</h1>
             <div>
-              {order.inventories.map(currentInventory => {
+              {currentCart.inventories.map(currentInventory => {
                 return (
                   <div key={currentInventory.id}>
                     <div>
@@ -31,6 +34,9 @@ export class Order extends React.Component {
                 )
               })}
             </div>
+            <Link to="/checkout">
+              <button type="submit">Proceed To Checkout</button>
+            </Link>
           </div>
         ) : (
           <div>Loading</div>
@@ -42,16 +48,16 @@ export class Order extends React.Component {
 
 const mapState = state => {
   return {
-    order: state.order
+    currentCart: state.currentCart
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchSingleOrder: orderId => {
-      dispatch(fetchSingleOrder(orderId))
+    fetchSingleCart: userId => {
+      dispatch(fetchSingleCart(userId))
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(Order)
+export default connect(mapState, mapDispatch)(Cart)

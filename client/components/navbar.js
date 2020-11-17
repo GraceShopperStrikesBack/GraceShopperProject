@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import CartQuantity from './CartQuantity'
+import Cart from './Cart'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => (
   <div>
     <nav>
       <img alt="logo" src="../../images/GPS_Logo.png" />
@@ -15,17 +17,21 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <Link to="/inventory">Products</Link>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/inventory">Products</Link>
         </div>
       )}
-      <img src="../../images/CartLogo.png" alt="cart" className="cart" />
-    </nav>
-    <hr />
+
+      <Link to={`/users/${user}/cart`}>
+        <img src="../../images/CartLogo.png" alt="cart" className="cart" />
+      </Link>
+      <CartQuantity />
   </div>
 )
 
@@ -34,7 +40,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    user: state.user.id,
+    isLoggedIn: !!state.user.id,
+    currentCart: state.currentCart
   }
 }
 

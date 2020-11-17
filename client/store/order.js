@@ -12,10 +12,24 @@ const setSingleOrder = order => ({
 export const fetchSingleOrder = orderId => {
   return async dispatch => {
     try {
-      const {data: order} = await axios.get(`/api/order/${orderId}`)
+      const {data: order} = await axios.get(`/api/${orderId}`)
       dispatch(setSingleOrder(order))
     } catch (error) {
       console.error('fetching single order error', error)
+    }
+  }
+}
+
+export const updateSingleOrder = (orderId, orderObject) => {
+  return async dispatch => {
+    try {
+      const {data: order} = await axios.put(
+        `/api/order/${orderId}`,
+        orderObject
+      )
+      dispatch(setSingleOrder(order))
+    } catch (error) {
+      console.error('updating single order error', error)
     }
   }
 }

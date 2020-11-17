@@ -49,9 +49,9 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:inventoryId', async (req, res, next) => {
   try {
-    const itemId = req.params.id
+    const itemId = req.params.inventoryId
     if ((await Inventory.findByPk(itemId)) === null) {
       res.send('Item not found.')
     } else {
@@ -63,9 +63,9 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:inventoryId', async (req, res, next) => {
   try {
-    const itemId = req.params.id
+    const itemId = req.params.inventoryId
     if ((await Inventory.findByPk(itemId)) === null) {
       res.send('Item not found.')
     } else {
