@@ -17,12 +17,19 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:userId/cart', async (req, res, next) => {
   try {
-    const cart = await Order.findAll({
+    let cart = await Order.findAll({
       where: {userId: req.params.userId, isFulfilled: false},
       include: {
         model: Inventory
       }
     })
+    const user = await User.findOne({where: {id: req.params.userId}})
+    if (!user) {
+      await User.create({id: req.params.userId, email: 'guestuser@dummy.com'})
+    }
+    if (!cart.length) {
+      cart = await Order.create({userId: req.params.userId})
+    }
     res.json(cart)
   } catch (err) {
     next(err)

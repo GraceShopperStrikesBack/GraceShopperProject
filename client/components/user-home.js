@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import CreateNewInventory from './createNewInventory'
+import CreateNewInventory from './CreateNewInventory'
 import {fetchSingleCart} from '../store/currentCart'
 
 /**
