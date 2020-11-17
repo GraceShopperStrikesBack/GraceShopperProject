@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import CreateNewInventory from './CreateNewInventory'
 import {fetchSingleCart} from '../store/currentCart'
+import {fetchNotLoggedIn} from '../store/user'
 
 /**
  * COMPONENT
@@ -13,6 +14,10 @@ export class UserHome extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.props.user.id) {
+      let user = localStorage.getItem('userId')
+      this.props.fetchNotLoggedIn(user)
+    }
     this.props.fetchSingleCart(this.props.user.id)
   }
 
@@ -49,6 +54,9 @@ const mapDispatch = dispatch => {
   return {
     fetchSingleCart: userId => {
       dispatch(fetchSingleCart(userId))
+    },
+    fetchNotLoggedIn: userId => {
+      dispatch(fetchNotLoggedIn(userId))
     }
   }
 }
