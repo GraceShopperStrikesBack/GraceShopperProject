@@ -13,7 +13,6 @@ export const fetchSingleCart = userId => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/users/${userId}/cart`)
-      console.log('user data is ?????????????????', data)
       //   console.log('in fetchSingleCart >>>>>>>>>>>>')
       //   const { data: order } = await axios.get(`/api/order/`, { userId: userId })
       //   console.log('order in fetchSingleCart is : >>>>>>>>>>>', order)

@@ -14,32 +14,29 @@ export class SingleInventory extends React.Component {
   componentDidMount() {
     try {
       const inventoryId = this.props.match.params.inventoryId
-      console.log('USER IDDDDDDDDDD', this.props)
-      const userId = this.props.userId
-      this.props.fetchSingleCart(userId)
       this.props.getSingleInventory(inventoryId)
     } catch (error) {
       console.error('single inventory mount error', error)
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user) {
-      const userId = this.props.userId
-      this.props.fetchSingleCart(userId)
+  async componentDidUpdate(prevProps) {
+    try {
+      if (this.props.user !== prevProps.user) {
+        await this.props.fetchSingleCart(this.props.user.id)
+      }
+    } catch (error) {
+      console.error('fetch cart update error', error)
     }
   }
 
-  handleSubmit(orderId, orderObject, event) {
-    event.preventDefault()
+  handleSubmit(orderId, orderObject) {
     this.props.updateSingleOrder(orderId, orderObject)
   }
 
   render() {
-    console.log(this.props.user)
-    console.log('CURRENT CARTTTTTTTTT', this.props.currentCart)
     const inventory = this.props.singleInventory
-    const currentCart = this.props.currentCart[0]
+    console.log('inventoryyyyyy', inventory)
     return (
       <div>
         {this.props.user ? (
@@ -55,7 +52,10 @@ export class SingleInventory extends React.Component {
               <button
                 type="submit"
                 onClick={() => {
-                  this.handleSubmit(currentCart.id, inventory)
+                  this.handleSubmit(this.props.currentCart[0].id, {
+                    ...inventory,
+                    quantity: 1
+                  })
                 }}
               >
                 Add To Cart
