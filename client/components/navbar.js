@@ -27,12 +27,11 @@ const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => (
           <Link to="/inventory">Products</Link>
         </div>
       )}
+
       <Link to={`/users/${user}/cart`}>
         <img src="../../images/CartLogo.png" alt="cart" className="cart" />
       </Link>
       <CartQuantity />
-    </nav>
-    <hr />
   </div>
 )
 

@@ -10,7 +10,7 @@ const defaultInventory = []
 
 //Action Creator//
 
-const setInventory = inventory => {
+export const setInventory = inventory => {
   return {type: GET_INVENTORY, inventory}
 }
 
