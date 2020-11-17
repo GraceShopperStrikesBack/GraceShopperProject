@@ -9,25 +9,12 @@ export class SingleInventory extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getCurrentCart = this.getCurrentCart.bind(this)
   }
 
   componentDidMount() {
-    try {
-      const inventoryId = this.props.match.params.inventoryId
-      console.log('USER IDDDDDDDDDD', this.props)
-      const userId = this.props.userId
-      this.props.fetchSingleCart(userId)
-      this.props.getSingleInventory(inventoryId)
-    } catch (error) {
-      console.error('single inventory mount error', error)
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user) {
-      const userId = this.props.userId
-      this.props.fetchSingleCart(userId)
-    }
+    const inventoryId = this.props.match.params.inventoryId
+    this.props.getSingleInventory(inventoryId)
   }
 
   handleSubmit(orderId, orderObject, event) {
@@ -35,11 +22,28 @@ export class SingleInventory extends React.Component {
     this.props.updateSingleOrder(orderId, orderObject)
   }
 
+  getCurrentCart() {
+    // event.preventDefault()
+    let userId = this.props.user.id
+    if (userId) {
+      this.props.fetchSingleCart(userId)
+    }
+    const currentCart = this.props.currentCart[0]
+    console.log(currentCart)
+  }
+
   render() {
-    console.log(this.props.user)
-    console.log('CURRENT CARTTTTTTTTT', this.props.currentCart)
     const inventory = this.props.singleInventory
     const currentCart = this.props.currentCart[0]
+    // console.log(currentCart)
+    // console.log(this.props.user)
+    // let userId = this.props.user.id
+
+    // if (userId) {
+    //   event.preventDefault()
+    //   this.props.fetchSingleCart(userId)
+    // }
+    // console.log(currentCart)
     return (
       <div>
         {this.props.user ? (
@@ -79,7 +83,6 @@ export class SingleInventory extends React.Component {
 }
 
 const mapState = state => {
-  console.log('STATE', state)
   return {
     singleInventory: state.singleInventory,
     user: state.user,
