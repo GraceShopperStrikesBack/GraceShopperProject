@@ -31,12 +31,13 @@ export class SingleInventory extends React.Component {
   }
 
   handleSubmit(orderId, orderObject) {
+    console.log(orderObject)
     this.props.updateSingleOrder(orderId, orderObject)
   }
 
   render() {
     const inventory = this.props.singleInventory
-    console.log('inventoryyyyyy', inventory)
+    const currentCart = this.props.currentCart[0]
     return (
       <div>
         {this.props.user ? (
@@ -52,10 +53,12 @@ export class SingleInventory extends React.Component {
               <button
                 type="submit"
                 onClick={() => {
-                  this.handleSubmit(this.props.currentCart[0].id, {
-                    ...inventory,
-                    quantity: 1
-                  })
+                  if (currentCart) {
+                    this.handleSubmit(currentCart.id, {
+                      ...inventory,
+                      quantity: 1
+                    })
+                  }
                 }}
               >
                 Add To Cart
