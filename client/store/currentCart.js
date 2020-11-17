@@ -41,7 +41,7 @@ export const updateSingleCart = (orderId, orderObject) => {
 export default function currentCartReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SINGLE_CART:
-      return (state = action.order)
+      return action.order
     default:
       return state
   }
