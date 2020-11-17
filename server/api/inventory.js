@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const {User} = require('../db/models')
 const Inventory = require('../db/models/inventory')
 
 router.get('/', async (req, res, next) => {
@@ -24,25 +25,31 @@ router.get('/:inventoryId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const name = await Inventory.findOne({
-      where: {
-        name: req.body.name,
-        imageUrl: req.body.imageUrl,
-        description: req.body.description,
-        price: req.body.price
-      }
-    })
-    if (name !== null) {
-      res.send('Item already exists!')
-    } else {
-      res.send(
-        await Inventory.create({
+    let user = await User.findByPk(req.body.userId)
+    console.log('USER??', req.body.userId)
+    if (user.isAdmin) {
+      const name = await Inventory.findOne({
+        where: {
           name: req.body.name,
           imageUrl: req.body.imageUrl,
           description: req.body.description,
           price: req.body.price
-        })
-      )
+        }
+      })
+      if (name !== null) {
+        res.send('Item already exists!')
+      } else {
+        res.send(
+          await Inventory.create({
+            name: req.body.name,
+            imageUrl: req.body.imageUrl,
+            description: req.body.description,
+            price: req.body.price
+          })
+        )
+      }
+    } else {
+      res.send('You do not have permission to update this page.')
     }
   } catch (err) {
     next(err)
