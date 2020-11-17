@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleCart} from '../store/currentCart'
-import {SingleInventory} from './singleInventory'
+import Checkout from './Checkout'
+import {SingleInventory} from './SingleInventory'
+import {Link} from 'react-router-dom'
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -10,7 +12,6 @@ export class Cart extends React.Component {
   }
 
   render() {
-    console.log(this.props.currentCart)
     let currentCart = this.props.currentCart[0]
     return (
       <div>
@@ -33,6 +34,9 @@ export class Cart extends React.Component {
                 )
               })}
             </div>
+            <Link to="/checkout">
+              <button type="submit">Proceed To Checkout</button>
+            </Link>
           </div>
         ) : (
           <div>Loading</div>

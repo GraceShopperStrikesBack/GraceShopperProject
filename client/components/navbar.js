@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import CartQuantity from './cartQuantity'
-import Cart from './cart'
+import CartQuantity from './CartQuantity'
+import Cart from './Cart'
 
 const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => (
   <div>
