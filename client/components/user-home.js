@@ -27,7 +27,7 @@ export class UserHome extends React.Component {
             <CreateNewInventory userId={this.props.user.id} />
           </div>
         ) : (
-          <div>You do not have permission to edit products.</div>
+          <div>Welcome to Grace Pro Shopper!</div>
         )}
         <footer>Grace Pro Shopper © 2020</footer>
       </div>

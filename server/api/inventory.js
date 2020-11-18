@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 const Inventory = require('../db/models/inventory')
+const gatekeeper = require('./gatekeeper')
+const gateKeeper = require('./gatekeeper')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -23,40 +25,34 @@ router.get('/:inventoryId', async (req, res, next) => {
 
 //admin editing routes//
 
-router.post('/', async (req, res, next) => {
+router.post('/', gatekeeper.isAdmin, async (req, res, next) => {
   try {
-    let user = await User.findByPk(req.body.userId)
-    console.log('USER??', req.body.userId)
-    if (user.isAdmin) {
-      const name = await Inventory.findOne({
-        where: {
+    const name = await Inventory.findOne({
+      where: {
+        name: req.body.name,
+        imageUrl: req.body.imageUrl,
+        description: req.body.description,
+        price: req.body.price
+      }
+    })
+    if (name !== null) {
+      res.send('Item already exists!')
+    } else {
+      res.send(
+        await Inventory.create({
           name: req.body.name,
           imageUrl: req.body.imageUrl,
           description: req.body.description,
           price: req.body.price
-        }
-      })
-      if (name !== null) {
-        res.send('Item already exists!')
-      } else {
-        res.send(
-          await Inventory.create({
-            name: req.body.name,
-            imageUrl: req.body.imageUrl,
-            description: req.body.description,
-            price: req.body.price
-          })
-        )
-      }
-    } else {
-      res.send('You do not have permission to update this page.')
+        })
+      )
     }
   } catch (err) {
     next(err)
   }
 })
 
-router.delete('/:inventoryId', async (req, res, next) => {
+router.delete('/:inventoryId', gatekeeper.isAdmin, async (req, res, next) => {
   try {
     const itemId = req.params.inventoryId
     if ((await Inventory.findByPk(itemId)) === null) {
@@ -70,7 +66,7 @@ router.delete('/:inventoryId', async (req, res, next) => {
   }
 })
 
-router.put('/:inventoryId', async (req, res, next) => {
+router.put('/:inventoryId', gatekeeper.isAdmin, async (req, res, next) => {
   try {
     const itemId = req.params.inventoryId
     if ((await Inventory.findByPk(itemId)) === null) {

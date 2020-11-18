@@ -45,8 +45,7 @@ class CreateNewInventory extends React.Component {
         this.state.name,
         this.state.imageUrl,
         this.state.description,
-        this.state.price,
-        this.props.userId
+        this.state.price
       )
       this.setState({
         name: '',
