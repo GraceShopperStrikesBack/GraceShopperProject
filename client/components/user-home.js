@@ -30,14 +30,17 @@ export class UserHome extends React.Component {
       <div>
         {this.props.user.isAdmin === true ? (
           <div>
+
             <h3>
               Welcome to Grace Pro Shopper, Fellow Administrator,
               {this.props.email}!
             </h3>
+
             <CreateNewInventory userId={this.props.user.id} />
           </div>
         ) : (
           <div>
+
             <h1>Welcome to Grace Pro Shopper, {this.props.email}!</h1>
             <h2>Order History</h2>
             <div className="orderHistory">
@@ -59,6 +62,7 @@ export class UserHome extends React.Component {
                           className="orderHistoryImage"
                           src={orderImage.imageUrl}
                         />
+
                         <div className="quantity">
                           <p>Order Date:</p>
                           {currentOrder.updatedAt.substring(0, 11)}

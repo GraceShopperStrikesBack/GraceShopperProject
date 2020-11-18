@@ -228,6 +228,7 @@ button,
   z-index: 3;
 }
 
+
 .quantity {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 700;
@@ -236,11 +237,15 @@ button,
   font-size: 1.5em;
 }
 
+
 /* James Order History Css */
 
 .orderHistoryImage {
   width: 200px;
+
   border-radius: 15%;
+
+
 }
 
 .orderHistory {
@@ -250,6 +255,7 @@ button,
 .orderHistoryChild {
   padding: 20px;
   justify-items: start;
+
   margin: 5px;
 }
 
