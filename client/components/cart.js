@@ -13,6 +13,7 @@ export class Cart extends React.Component {
 
   render() {
     let currentCart = this.props.currentCart[0]
+    let userId = this.props.match.params.userId
     return (
       <div>
         {this.props.currentCart.length ? (
@@ -34,7 +35,7 @@ export class Cart extends React.Component {
                 )
               })}
             </div>
-            <Link to="/checkout">
+            <Link to={`/users/${userId}/checkout`}>
               <button type="submit">Proceed To Checkout</button>
             </Link>
           </div>
