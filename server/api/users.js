@@ -65,4 +65,17 @@ router.get('/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:userId/checkout', async (req, res, next) => {
+  try {
+    let order = await Order.findByPk(req.body.orderId)
+
+    order.isFulfilled = true
+    order.save()
+    console.log('ORDER AFTER CHANGING FULFILLED', order)
+    res.status(200).send(order)
+  } catch (error) {
+    next(err)
+  }
+})
 module.exports = router
