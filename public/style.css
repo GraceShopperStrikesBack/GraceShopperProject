@@ -227,12 +227,17 @@ button,
   z-index: 3;
 }
 
-/* Cart */
+/* James Order History Css */
 
-.quantity {
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: white;
-  font-size: 2em;
+.orderHistoryImage {
+  width: 200px;
+}
+
+.orderHistory {
+  display: flex;
+}
+
+.orderHistoryChild {
+  padding: 20px;
+  justify-items: start;
 }
