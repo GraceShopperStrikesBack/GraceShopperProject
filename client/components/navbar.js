@@ -23,18 +23,28 @@ const Navbar = ({handleClick, isLoggedIn, currentCart, user, email}) => {
         {isLoggedIn && email !== 'guestuser@dummy.com' ? (
           <div>
             {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <a href="#" onClick={handleClick}>
+            <Link className="textLink" to="/home">
+              Home
+            </Link>
+            <a href="#" onClick={handleClick} className="textLink">
               Logout
             </a>
-            <Link to="/inventory">Products</Link>
+            <Link className="textLink" to="/inventory">
+              Products
+            </Link>
           </div>
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/inventory">Products</Link>
+            <Link className="textLink" to="/login">
+              Login
+            </Link>
+            <Link className="textLink" to="/signup">
+              Sign Up
+            </Link>
+            <Link className="textLink" to="/inventory">
+              Products
+            </Link>
           </div>
         )}
         <Link to={`/users/${user}/cart`}>

@@ -14,13 +14,13 @@ const AuthForm = props => {
       <div className="formBox">
         <img src="./images/GPS_Logo.png" />
         <form onSubmit={handleSubmit} name={name}>
-          <div>
+          <div className="inputblock">
             <label htmlFor="email">
               <small className="inputLabel">Email</small>
             </label>
             <input name="email" type="text" />
           </div>
-          <div>
+          <div className="inputblock">
             <label htmlFor="password">
               <small className="inputLabel">Password</small>
             </label>
@@ -29,10 +29,14 @@ const AuthForm = props => {
           <div>
             <button type="submit">{displayName}</button>
           </div>
-          {error && error.response && <div> {error.response.data} </div>}
+          {error &&
+            error.response && (
+              <div className="loginMessage"> {error.response.data} </div>
+            )}
         </form>
-        <a href="/auth/google">{displayName} with Google</a>
-        <footer>Grace Pro Shopper © 2020</footer>
+        <a className="google" href="/auth/google">
+          {displayName} with Google
+        </a>
       </div>
     </div>
   )

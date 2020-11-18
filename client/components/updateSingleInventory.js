@@ -54,8 +54,9 @@ class UpdateSingleInventory extends React.Component {
           <h2>Update Product</h2>
         </div>
         <form onSubmit={this.handleUpdate}>
-          <div>
-            Product Name:<br />
+          <div className="inputblock">
+            Product Name:
+            <br />
             <input
               type="text"
               name="name"
@@ -63,8 +64,9 @@ class UpdateSingleInventory extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div>
-            Image URL:<br />
+          <div className="inputblock">
+            Image URL:
+            <br />
             <input
               type="text"
               name="imageUrl"
@@ -72,8 +74,9 @@ class UpdateSingleInventory extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div>
-            Description:<br />
+          <div className="inputblock">
+            Description:
+            <br />
             <input
               type="text"
               name="description"
@@ -81,8 +84,9 @@ class UpdateSingleInventory extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div>
-            Price:<br />
+          <div className="inputblock">
+            Price:
+            <br />
             <input
               type="text"
               name="price"
