@@ -7,13 +7,15 @@ import singleInventoryReducer from './singleInventory'
 import allInventoryReducer from './allInventory'
 import singleOrderReducer from './order'
 import currentCartReducer from './currentCart'
+import allOrdersReducer from './allOrders'
 
 export const reducer = combineReducers({
   user,
   singleInventory: singleInventoryReducer,
   inventory: allInventoryReducer,
   order: singleOrderReducer,
-  currentCart: currentCartReducer
+  currentCart: currentCartReducer,
+  allOrders: allOrdersReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

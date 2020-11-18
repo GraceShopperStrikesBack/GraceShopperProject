@@ -77,10 +77,10 @@ footer {
   font-size: 1em;
 }
 
-/* .formBox footer {
+.formBox footer {
   position: absolute;
   bottom: 0;
-} */
+}
 
 /*HEADING STYLE */
 
@@ -89,6 +89,7 @@ h3 {
   display: table;
   margin: auto;
   padding: 0.5em 1em;
+  text-align: center;
   font-size: 4em;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -227,12 +228,33 @@ button,
   z-index: 3;
 }
 
-/* Cart */
-
 .quantity {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
+}
+
+/* James Order History Css */
+
+.orderHistoryImage {
+  width: 200px;
+  border-radius: 15%;
+}
+
+.orderHistory {
+  display: flex;
+}
+
+.orderHistoryChild {
+  padding: 20px;
+  justify-items: start;
+  margin: 5px;
+}
+
+.orderHistoryChild:hover {
+  border: 2px solid white;
+  border-radius: 15%;
+  margin: 3px;
 }
