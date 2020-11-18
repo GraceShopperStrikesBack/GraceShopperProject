@@ -26,6 +26,20 @@ export const fetchSingleCart = userId => {
   }
 }
 
+export const removeSingleItem = (userId, itemId, orderId) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/users/${userId}/cart/`, {
+        itemId,
+        orderId
+      })
+      dispatch(setSingleCart(data))
+    } catch (error) {
+      console.error('deleting single cart error', error)
+    }
+  }
+}
+
 export const updateSingleCart = (orderId, orderObject) => {
   return async dispatch => {
     try {
