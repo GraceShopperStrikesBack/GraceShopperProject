@@ -71,7 +71,8 @@ class CreateNewInventory extends React.Component {
           </div>
           <form onSubmit={this.handleSubmit}>
             <div>
-              Product Name:<br />
+              Product Name:
+              <br />
               <input
                 type="text"
                 name="name"
@@ -80,7 +81,8 @@ class CreateNewInventory extends React.Component {
               />
             </div>
             <div>
-              Image URL:<br />
+              Image URL:
+              <br />
               <input
                 type="text"
                 name="imageUrl"
@@ -89,7 +91,8 @@ class CreateNewInventory extends React.Component {
               />
             </div>
             <div>
-              Description:<br />
+              Description:
+              <br />
               <input
                 type="text"
                 name="description"
@@ -98,7 +101,8 @@ class CreateNewInventory extends React.Component {
               />
             </div>
             <div>
-              Price:<br />
+              Price:
+              <br />
               <input
                 type="text"
                 name="price"
@@ -116,8 +120,8 @@ class CreateNewInventory extends React.Component {
 
 const mapDispatch = dispatch => {
   return {
-    addSingleInventory: (name, imageUrl, description, price) =>
-      dispatch(addSingleInventory(name, imageUrl, description, price))
+    addSingleInventory: (name, imageUrl, description, price, userId) =>
+      dispatch(addSingleInventory(name, imageUrl, description, price, userId))
   }
 }
 
