@@ -28,16 +28,21 @@ export class UserHome extends React.Component {
     let allOrders = this.props.allOrders
     return (
       <div>
-        <h3>Welcome, {this.props.email}</h3>
         {this.props.user.isAdmin === true ? (
           <div>
-            <h1>Welcome to Grace Pro Shopper Fellow Administrator!</h1>
+
+            <h3>
+              Welcome to Grace Pro Shopper, Fellow Administrator,
+              {this.props.email}!
+            </h3>
+
             <CreateNewInventory userId={this.props.user.id} />
           </div>
         ) : (
           <div>
-            <h1>Welcome to Grace Pro Shopper!</h1>
-            <h3>Order History</h3>
+
+            <h1>Welcome to Grace Pro Shopper, {this.props.email}!</h1>
+            <h2>Order History</h2>
             <div className="orderHistory">
               {allOrders
                 .filter(currentOrder => {
@@ -57,6 +62,11 @@ export class UserHome extends React.Component {
                           className="orderHistoryImage"
                           src={orderImage.imageUrl}
                         />
+
+                        <div className="quantity">
+                          <p>Order Date:</p>
+                          {currentOrder.updatedAt.substring(0, 11)}
+                        </div>
                       </div>
                     </a>
                   )
@@ -64,7 +74,6 @@ export class UserHome extends React.Component {
             </div>
           </div>
         )}
-        <footer>Grace Pro Shopper © 2020</footer>
       </div>
     )
   }

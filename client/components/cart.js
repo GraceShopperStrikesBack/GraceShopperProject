@@ -18,15 +18,18 @@ export class Cart extends React.Component {
         {this.props.currentCart.length ? (
           <div>
             <h1>Your Cart</h1>
-            <div>
+            <Link to="/checkout">
+              <button type="submit">Proceed To Checkout</button>
+            </Link>
+            <div className="inventoryBox">
               {currentCart.inventories.map(currentInventory => {
                 return (
-                  <div key={currentInventory.id}>
+                  <div key={currentInventory.id} className="singlePageItem">
                     <div>
                       <img src={currentInventory.imageUrl} />
                       <h2>{currentInventory.name}</h2>
                       <h3>$ {currentInventory.order_inventory.price}</h3>
-                      <p>
+                      <p className="quantity">
                         Quantity:{currentInventory.order_inventory.quantity}
                       </p>
                     </div>
@@ -34,9 +37,6 @@ export class Cart extends React.Component {
                 )
               })}
             </div>
-            <Link to="/checkout">
-              <button type="submit">Proceed To Checkout</button>
-            </Link>
           </div>
         ) : (
           <div>Loading</div>

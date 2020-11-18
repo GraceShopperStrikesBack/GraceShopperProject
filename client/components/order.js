@@ -15,15 +15,15 @@ export class Order extends React.Component {
         {order.id ? (
           <div>
             <h1>Order</h1>
-            <div>
+            <div className="inventoryBox">
               {order.inventories.map(currentInventory => {
                 return (
-                  <div key={currentInventory.id}>
+                  <div key={currentInventory.id} className="singlePageItem">
                     <div>
                       <img src={currentInventory.imageUrl} />
                       <h2>{currentInventory.name}</h2>
                       <h3>$ {currentInventory.order_inventory.price}</h3>
-                      <p>
+                      <p className="quantity">
                         Quantity:{currentInventory.order_inventory.quantity}
                       </p>
                     </div>

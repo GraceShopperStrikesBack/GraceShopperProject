@@ -69,8 +69,8 @@ class CreateNewInventory extends React.Component {
           <div>
             <h2>Add New Products</h2>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
+          <form onSubmit={this.handleSubmit} className="formBox">
+            <div className="inputblock">
               Product Name:
               <br />
               <input
@@ -80,7 +80,7 @@ class CreateNewInventory extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div>
+            <div className="inputblock">
               Image URL:
               <br />
               <input
@@ -90,7 +90,7 @@ class CreateNewInventory extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div>
+            <div className="inputblock">
               Description:
               <br />
               <input
@@ -100,7 +100,7 @@ class CreateNewInventory extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div>
+            <div className="inputblock">
               Price:
               <br />
               <input
