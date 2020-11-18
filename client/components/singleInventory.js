@@ -14,10 +14,6 @@ export class SingleInventory extends React.Component {
 
   componentDidMount() {
     try {
-      if (!this.props.user.id) {
-        let user = localStorage.getItem('userId')
-        this.props.fetchNotLoggedIn(user)
-      }
       const inventoryId = this.props.match.params.inventoryId
       this.props.getSingleInventory(inventoryId)
     } catch (error) {
@@ -30,6 +26,9 @@ export class SingleInventory extends React.Component {
       if (this.props.user !== prevProps.user) {
         let userId = this.props.user.id
         await this.props.fetchSingleCart(userId)
+      } else if (!this.props.user.id) {
+        let fetchedUser = localStorage.getItem('userId')
+        this.props.fetchNotLoggedIn(fetchedUser)
       }
     } catch (error) {
       console.error('fetch cart update error', error)

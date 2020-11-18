@@ -6,7 +6,7 @@ import {logout} from '../store'
 import CartQuantity from './CartQuantity'
 import Cart from './Cart'
 
-const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => {
+const Navbar = ({handleClick, isLoggedIn, currentCart, user, email}) => {
   if (isLoggedIn) {
     let newUser = user
   } else if (localStorage.getItem('userId')) {
@@ -20,7 +20,7 @@ const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => {
     <div>
       <nav>
         <img alt="logo" src="../../images/GPS_Logo.png" />
-        {isLoggedIn ? (
+        {isLoggedIn && email !== 'guestuser@dummy.com' ? (
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
@@ -52,6 +52,7 @@ const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => {
  */
 const mapState = state => {
   return {
+    email: state.user.email,
     user: state.user.id,
     isLoggedIn: !!state.user.id,
     currentCart: state.currentCart
