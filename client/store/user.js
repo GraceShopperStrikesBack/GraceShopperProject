@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const GET_NOT_LOGGED_IN_USER = 'GET_NOT_LOGGED_IN_USER'
 
 /**
  * INITIAL STATE
@@ -17,10 +18,22 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const getNotLoggedInUser = user => ({type: GET_NOT_LOGGED_IN_USER, user})
 
 /**
  * THUNK CREATORS
  */
+export const fetchNotLoggedIn = userId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/users/${userId}`)
+      dispatch(getNotLoggedInUser(data))
+    } catch (error) {
+      console.error('fetch not logged in user error', error)
+    }
+  }
+}
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
@@ -65,6 +78,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case GET_NOT_LOGGED_IN_USER:
+      return action.user
     default:
       return state
   }

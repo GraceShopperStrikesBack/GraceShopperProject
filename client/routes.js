@@ -4,8 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import allInventory from './components/allInventory'
-import singleInventory from './components/singleInventory'
+import AllInventory from './components/AllInventory'
+import SingleInventory from './components/SingleInventory'
+import Order from './components/Order'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -17,14 +19,15 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/inventory" component={allInventory} />
-        <Route path="/inventory/:inventoryId" component={singleInventory} />
+        <Route path="/order/:orderId" component={Order} />
+        <Route path="/users/:userId/cart" component={Cart} />
+        <Route exact path="/inventory" component={AllInventory} />
+        <Route path="/inventory/:inventoryId" component={SingleInventory} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -45,7 +48,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 

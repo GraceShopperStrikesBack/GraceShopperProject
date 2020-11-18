@@ -1,5 +1,8 @@
 const router = require('express').Router()
+const {User} = require('../db/models')
 const Inventory = require('../db/models/inventory')
+const gatekeeper = require('./gatekeeper')
+const gateKeeper = require('./gatekeeper')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -22,7 +25,7 @@ router.get('/:inventoryId', async (req, res, next) => {
 
 //admin editing routes//
 
-router.post('/', async (req, res, next) => {
+router.post('/', gatekeeper.isAdmin, async (req, res, next) => {
   try {
     const name = await Inventory.findOne({
       where: {
@@ -49,9 +52,9 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:inventoryId', gatekeeper.isAdmin, async (req, res, next) => {
   try {
-    const itemId = req.params.id
+    const itemId = req.params.inventoryId
     if ((await Inventory.findByPk(itemId)) === null) {
       res.send('Item not found.')
     } else {
@@ -63,9 +66,9 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:inventoryId', gatekeeper.isAdmin, async (req, res, next) => {
   try {
-    const itemId = req.params.id
+    const itemId = req.params.inventoryId
     if ((await Inventory.findByPk(itemId)) === null) {
       res.send('Item not found.')
     } else {

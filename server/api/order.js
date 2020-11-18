@@ -3,9 +3,47 @@ const Inventory = require('../db/models/inventory')
 const Order = require('../db/models/order')
 const OrderInventory = require('../db/models/order_inventory')
 
-// router.get('/', async (req, res, next) => {
-//is this the order or cart
-// })
+router.get('/all', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      include: {model: Inventory}
+    })
+    res.status(200).json(orders)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/', async (req, res, next) => {
+  try {
+    let order = await Order.findOne({
+      where: {userId: req.body.userId, isFulfilled: false},
+      include: {model: Inventory}
+    })
+    if (!order) {
+      // order = await Order.create({
+      //   where: {userId: req.body.userId, isFulfilled: false},
+      //   include: {model: Inventory}
+      // })
+      res.status(404)
+    } else {
+      res.status(200).json(order)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    let order = await Order.findByPk(req.params.orderId, {
+      include: {model: Inventory}
+    })
+    res.status(200).json(order)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.post('/', async (req, res, next) => {
   try {
@@ -50,10 +88,21 @@ router.post('/', async (req, res, next) => {
 router.put('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
-    const updateOrder = await OrderInventory.update(req.body, {
-      where: {orderId: orderId, inventoryId: req.body.inventoryId}
+    let orderToUpdate = await OrderInventory.findOne({
+      where: {orderId: orderId, inventoryId: req.body.id}
     })
-    res.send(updateOrder)
+    if (orderToUpdate) {
+      orderToUpdate.quantity += 1
+      await orderToUpdate.save()
+    } else {
+      orderToUpdate = await OrderInventory.create({
+        quantity: 1,
+        price: req.body.price,
+        orderId: req.params.orderId,
+        inventoryId: req.body.id
+      })
+    }
+    res.status(200).json(orderToUpdate)
   } catch (err) {
     next(err)
   }

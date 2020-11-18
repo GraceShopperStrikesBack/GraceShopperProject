@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getAllInventory} from '../store/allInventory'
 
 //Need to import single page from SJ and Dan//
-class AllInventory extends React.Component {
+export class AllInventory extends React.Component {
   componentDidMount() {
     this.props.getInventory()
   }
@@ -23,10 +23,12 @@ class AllInventory extends React.Component {
         <div className="inventoryBox">
           {inventory.map(currentItem => {
             return (
-              <div key={currentItem.id} className="singleInventoryBox">
-                <img src={currentItem.imageUrl} />
-                <div className="title">{currentItem.name}</div>
-              </div>
+              <a key={currentItem.id} href={`/inventory/${currentItem.id}`}>
+                <div className="singleInventoryBox">
+                  <img src={currentItem.imageUrl} />
+                  <div className="title">{currentItem.name}</div>
+                </div>
+              </a>
             )
           })}
         </div>

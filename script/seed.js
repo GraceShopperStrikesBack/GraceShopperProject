@@ -3,6 +3,8 @@
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Inventory} = require('../server/db/models')
+const {Order} = require('../server/db/models')
+const {OrderInventory} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -17,6 +19,11 @@ async function seed() {
     }),
     User.create({
       email: 'murphy@email.com',
+      password: '123',
+      address: '405 W Superior St, Chicago, IL 60654'
+    }),
+    User.create({
+      email: 'slipperysam@email.com',
       password: '123',
       address: '405 W Superior St, Chicago, IL 60654'
     })
@@ -248,6 +255,63 @@ async function seed() {
       price: 250,
       category: 'Blade Putters'
     })
+  ])
+
+  const orders = await Promise.all([
+    Order.create({}),
+    Order.create({userId: 2, isFulfilled: true}),
+    Order.create({userId: 1, isFulfilled: true}),
+    Order.create({userId: 1, isFulfilled: true}),
+    Order.create({userId: 2, isFulfilled: true}),
+    Order.create({userId: 3, isFulfilled: true}),
+    Order.create({userId: 3, isFulfilled: true}),
+    Order.create({userId: 3, isFulfilled: true})
+  ])
+
+  const orderInventory = await Promise.all([
+    OrderInventory.create({
+      inventoryId: 1,
+      orderId: 1,
+      price: 200,
+      quantity: 2
+    }),
+    OrderInventory.create({
+      inventoryId: 4,
+      orderId: 3,
+      price: 400,
+      quantity: 4
+    }),
+    OrderInventory.create({
+      inventoryId: 8,
+      orderId: 2,
+      price: 600,
+      quantity: 3
+    }),
+    OrderInventory.create({
+      inventoryId: 11,
+      orderId: 3,
+      price: 1600,
+      quantity: 6
+    }),
+    OrderInventory.create({
+      inventoryId: 5,
+      orderId: 6,
+      price: 400,
+      quantity: 4
+    }),
+    OrderInventory.create({
+      inventoryId: 9,
+      orderId: 7,
+      price: 600,
+      quantity: 3
+    }),
+    OrderInventory.create({
+      inventoryId: 13,
+      orderId: 8,
+      price: 1600,
+      quantity: 6
+    }),
+    OrderInventory.create({inventoryId: 1, orderId: 2, price: 200, quantity: 2})
   ])
 
   console.log(`seeded ${users.length} users`)
