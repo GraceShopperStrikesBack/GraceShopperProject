@@ -29,7 +29,7 @@ nav {
   padding: 10px;
 }
 
-nav a {
+nav .textLink {
   display: inline-block;
   height: 1.5em;
   margin: 0 1.5em 0 0;
@@ -39,7 +39,7 @@ nav a {
   padding: 5px;
 }
 
-nav a:hover {
+nav .textLink:hover {
   color: #202b47;
   border-radius: 5px;
   background-color: #fff;
@@ -66,23 +66,26 @@ nav .cart:hover {
 
 footer {
   width: 100%;
+  max-height: 5%;
   background-color: black;
-  padding-top: 5em;
-  padding-bottom: 5em;
+  padding-top: 3em;
+  padding-bottom: 3em;
   margin-top: 2em;
+  margin-bottom: 0;
   color: white;
   text-align: center;
   font-size: 1em;
 }
 
-.formBox footer {
+/* .formBox footer {
   position: absolute;
   bottom: 0;
-}
+} */
 
 /*HEADING STYLE */
 
-h1 {
+h1,
+h3 {
   display: table;
   margin: auto;
   padding: 0.5em 1em;
@@ -97,15 +100,33 @@ h1 {
   border-bottom: 2px solid white;
 }
 
+h2 {
+  display: table;
+  margin: auto;
+  padding: 0.5em 1em;
+  font-size: 2em;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
 /*FORM STYLE */
 
-form div {
+.inputblock {
   margin: 1em;
   display: flex-column;
   justify-content: center;
+  text-align: center;
   background-color: white;
   border-radius: 5%;
   padding: 1em 3em;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .formBox {
@@ -114,12 +135,15 @@ form div {
   flex-direction: column;
 }
 
-.formBox button {
+button,
+.google {
+  text-align: center;
   height: 1.5em;
   font-size: 1.3em;
   color: #fff;
   background-color: #005f40;
   padding: 5px;
+  margin: 1em;
   border-radius: 5px;
 }
 
@@ -129,6 +153,11 @@ form div {
   border-radius: 25%;
   padding: 2em;
   margin: 3em;
+}
+
+.loginMessage {
+  color: black;
+  background-color: white;
 }
 /*ALL INVENTORY VIEW STYLE */
 .inventoryBox {
@@ -196,4 +225,14 @@ form div {
   border-radius: 25%;
   margin: 2em;
   z-index: 3;
+}
+
+/* Cart */
+
+.quantity {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  font-size: 2em;
 }
