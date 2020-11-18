@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import CreateNewInventory from './createNewInventory'
+import CreateNewInventory from './CreateNewInventory'
 import {fetchSingleCart} from '../store/currentCart'
 
 /**
@@ -24,10 +24,10 @@ export class UserHome extends React.Component {
         <h3>Welcome, {this.props.email}</h3>
         {this.props.user.isAdmin === true ? (
           <div>
-            <CreateNewInventory />
+            <CreateNewInventory userId={this.props.user.id} />
           </div>
         ) : (
-          <div>You do not have permission to edit products.</div>
+          <div>Welcome to Grace Pro Shopper!</div>
         )}
         <footer>Grace Pro Shopper © 2020</footer>
       </div>

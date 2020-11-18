@@ -24,13 +24,13 @@ export const fetchSingleInventory = inventoryId => {
 export const addSingleInventory = (name, imageUrl, description, price) => {
   return async dispatch => {
     try {
-      const addSingleInventory = await axios.post('/api/inventory', {
+      const singleInventory = await axios.post('/api/inventory', {
         name: name,
         imageUrl: imageUrl,
         description: description,
         price: Number(price)
       })
-      dispatch(getAllInventory(addSingleInventory.data))
+      dispatch(getAllInventory(singleInventory.data))
     } catch (error) {
       console.error('adding single inventory error', error)
     }

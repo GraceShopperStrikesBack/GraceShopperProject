@@ -2,7 +2,7 @@ import React from 'react'
 import {fetchSingleInventory} from '../store/singleInventory'
 import {connect} from 'react-redux'
 import {updateSingleOrder} from '../store/order'
-import UpdateSingleInventory from './updateSingleInventory'
+import UpdateSingleInventory from './UpdateSingleInventory'
 import {fetchSingleCart} from '../store/currentCart'
 
 export class SingleInventory extends React.Component {
@@ -23,7 +23,12 @@ export class SingleInventory extends React.Component {
   async componentDidUpdate(prevProps) {
     try {
       if (this.props.user !== prevProps.user) {
-        await this.props.fetchSingleCart(this.props.user.id)
+        let userId = this.props.user.id
+        console.log(this.props.user.id)
+        if (!userId) {
+          userId = localStorage.getItem('userId')
+        }
+        await this.props.fetchSingleCart(userId)
       }
     } catch (error) {
       console.error('fetch cart update error', error)
@@ -31,7 +36,6 @@ export class SingleInventory extends React.Component {
   }
 
   handleSubmit(orderId, orderObject) {
-    console.log(orderObject)
     this.props.updateSingleOrder(orderId, orderObject)
   }
 
