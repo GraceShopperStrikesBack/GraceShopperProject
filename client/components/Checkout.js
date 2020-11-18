@@ -90,7 +90,7 @@ export class Checkout extends React.Component {
         </button>
       </div>
     ) : (
-      <div>EMPTY CART</div>
+      <div className="quantity">EMPTY CART</div>
     )
   }
 }

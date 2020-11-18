@@ -50,7 +50,7 @@ const Navbar = ({handleClick, isLoggedIn, currentCart, user, email}) => {
         <Link to={`/users/${user}/cart`}>
           <img src="../../images/CartLogo.png" alt="cart" className="cart" />
         </Link>
-        <CartQuantity />
+        {/* <CartQuantity /> */}
       </nav>
       <hr />
     </div>

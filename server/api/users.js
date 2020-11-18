@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Inventory} = require('../db/models')
+const {User, Order, Inventory, OrderInventory} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -31,6 +31,18 @@ router.get('/:userId/cart', async (req, res, next) => {
       cart = await Order.create({userId: req.params.userId})
     }
     res.json(cart)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:userId/cart/', async (req, res, next) => {
+  try {
+    let cart = await OrderInventory.findOne({
+      where: {orderId: req.body.orderId, inventoryId: req.body.itemId}
+    })
+    await cart.destroy()
+    res.status(200).json(cart)
   } catch (err) {
     next(err)
   }
