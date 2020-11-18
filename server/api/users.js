@@ -50,19 +50,19 @@ router.get('/:userId/order', async (req, res, next) => {
   }
 })
 
-// router.get('/:userId', async (req, res, next) => {
-//   try {
-//     const users = await User.findByPk(req.params.userId, {
-//       // explicitly select only the id and email fields - even though
-//       // users' passwords are encrypted, it won't help if we just
-//       // send everything to anyone who asks!
-//       include: {
-//         model: Order
-//       }
-//     })
-//     res.json(users)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const users = await User.findByPk(req.params.userId, {
+      // explicitly select only the id and email fields - even though
+      // users' passwords are encrypted, it won't help if we just
+      // send everything to anyone who asks!
+      include: {
+        model: Order
+      }
+    })
+    res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
 module.exports = router

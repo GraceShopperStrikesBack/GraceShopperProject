@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {updateSingleOrder} from '../store/order'
 import UpdateSingleInventory from './UpdateSingleInventory'
 import {fetchSingleCart} from '../store/currentCart'
+import {fetchNotLoggedIn} from '../store/user'
 
 export class SingleInventory extends React.Component {
   constructor(props) {
@@ -24,11 +25,10 @@ export class SingleInventory extends React.Component {
     try {
       if (this.props.user !== prevProps.user) {
         let userId = this.props.user.id
-        console.log(this.props.user.id)
-        if (!userId) {
-          userId = localStorage.getItem('userId')
-        }
         await this.props.fetchSingleCart(userId)
+      } else if (!this.props.user.id) {
+        let fetchedUser = localStorage.getItem('userId')
+        this.props.fetchNotLoggedIn(fetchedUser)
       }
     } catch (error) {
       console.error('fetch cart update error', error)
@@ -104,6 +104,9 @@ const mapDispatch = dispatch => {
     },
     fetchSingleCart: userId => {
       dispatch(fetchSingleCart(userId))
+    },
+    fetchNotLoggedIn: userId => {
+      dispatch(fetchNotLoggedIn(userId))
     }
   }
 }
