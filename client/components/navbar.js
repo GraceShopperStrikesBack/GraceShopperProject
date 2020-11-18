@@ -6,6 +6,7 @@ import {logout} from '../store'
 import CartQuantity from './CartQuantity'
 import Cart from './Cart'
 
+
 const Navbar = ({handleClick, isLoggedIn, currentCart, user}) => {
   if (isLoggedIn) {
     let newUser = user
