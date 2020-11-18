@@ -197,3 +197,18 @@ form div {
   margin: 2em;
   z-index: 3;
 }
+
+/* James Order History Css */
+
+.orderHistoryImage {
+  width: 200px;
+}
+
+.orderHistory {
+  display: flex;
+}
+
+.orderHistoryChild {
+  padding: 20px;
+  justify-items: start;
+}
